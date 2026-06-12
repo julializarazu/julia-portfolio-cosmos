@@ -1,0 +1,14 @@
+# Claves secretas y configuración local
+.env
+.env.local
+.env.production
+
+# Carpetas de dependencias y compilación
+node_modules/
+.next/
+out/
+build/
+
+# Archivos del sistema
+.DS_Store
+*.log
