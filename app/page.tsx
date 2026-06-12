@@ -40,6 +40,13 @@ const CONTACT = [
     icon: "ti-map-pin",
     color: "#60A5FA",
   },
+  {
+    label: "Nacimiento",
+    value: "18/05/2005",
+    href: "#about",
+    icon: "ti-cake",
+    color: "#F472B6",
+  },
 ];
 
 const SKILLS = [
@@ -52,6 +59,8 @@ const SKILLS = [
   { name: "GitHub", icon: "ti-brand-github", color: "#E2E8F0", level: 80 },
   { name: "Jira / ClickUp", icon: "ti-checklist", color: "#34D399", level: 88 },
   { name: "Premiere / Contenido", icon: "ti-video", color: "#C084FC", level: 74 },
+  { name: "Visual Studio Code", icon: "ti-brand-vscode", color: "#60A5FA", level: 86 },
+  { name: "Visual Studio", icon: "ti-code-dots", color: "#A78BFA", level: 78 },
 ];
 
 const EXPERIENCE = [
@@ -674,6 +683,7 @@ export default function Home() {
       <AnimatePresence>
         {showContactModal && (
           <motion.div
+            className="contact-modal-overlay"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -691,6 +701,7 @@ export default function Home() {
             }}
           >
             <motion.div
+              className="contact-modal-panel"
               initial={{ opacity: 0, y: 22, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 16, scale: 0.96 }}
@@ -705,7 +716,7 @@ export default function Home() {
                 boxShadow: "0 24px 80px rgba(0,0,0,.45)",
               }}
             >
-              <div style={{ display: "flex", justifyContent: "space-between", gap: 16, marginBottom: 18 }}>
+              <div className="contact-modal-header" style={{ display: "flex", justifyContent: "space-between", gap: 16, marginBottom: 18 }}>
                 <div>
                   <span className="project-tag" style={{ color: "#A78BFA", background: "rgba(167,139,250,.12)" }}>
                     Contacto
@@ -736,7 +747,7 @@ export default function Home() {
                 </button>
               </div>
 
-              <div style={{ display: "grid", gap: 12 }}>
+              <div className="contact-modal-list" style={{ display: "grid", gap: 12 }}>
                 <ContactCard
                   label="Email"
                   value="Julia.Valentina.Lizarazu@gmail.com"
