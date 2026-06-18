@@ -6,7 +6,7 @@ import { useRef, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const QUICK_QUESTIONS = [
-  "¿Qué tecnologías maneja Julia?",
+  "¿Qué es WaikIA?",
   "¿Tiene experiencia con IA?",
   "¿Está disponible para trabajar?",
   "¿Cuáles son sus proyectos más importantes?",
@@ -240,7 +240,9 @@ export function JuliaChat() {
             className={`msg-row ${m.role === "user" ? "user" : "bot"}`}
           >
             {m.role === "user" ? (
-              <div className="msg-av">Vos</div>
+              <div className="msg-av" aria-label="Avatar de usuario">
+                <i className="ti ti-user" aria-hidden="true" />
+              </div>
             ) : (
               <JuliaAvatar size="message" />
             )}

@@ -21,7 +21,7 @@ RESUMEN PROFESIONAL:
 Soy programadora recientemente graduada de la Universidad Tecnologica Nacional (UTN), con una fuerte vocacion por la tecnologia y la organizacion. Actualmente me desempeno como Assistant Manager, donde descubri mi pasion por el ciclo completo del desarrollo de software. Participo activamente en la gestion de proyectos, aseguramiento de calidad (QA), documentacion y mantengo una estrecha colaboracion con equipos tecnicos. Busco seguir creciendo en el mundo IT, aportando valor en proyectos digitales y desarrollandome en entornos dinamicos y colaborativos donde pueda aplicar tanto mis conocimientos de codigo como mis habilidades blandas.
 
 WAIKIA:
-- Ademas, soy Co-Fundadora y QA en WaikIA.
+- Ademas, soy Co-Leader en WaikIA, donde participo tanto en programacion como en QA.
 - WaikIA es una organizacion/startup que cree junto a amigos de la facu de la UTN.
 - En WaikIA dominamos la tecnologia y la inteligencia artificial para ayudar a equipos y negocios a dejar de perder tiempo en tareas repetitivas.
 - Hacemos principalmente dos cosas:

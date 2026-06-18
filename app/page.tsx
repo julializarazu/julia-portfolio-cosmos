@@ -147,9 +147,10 @@ const PROJECTS = [
     tagColor: "#FBBF24",
     tagBg: "rgba(251,191,36,0.1)",
     title: "App de Gimnasio",
-    desc: "Proyecto colaborativo desarrollado junto a companeros de la UTN. Sistema de gestion para gimnasios: turnos, socios y rutinas, con trabajo end-to-end y roles de equipo diferenciados.",
+    desc: "Proyecto colaborativo desarrollado dentro de WaikIA junto a mis amigos de la UTN. Sistema de gestion para gimnasios: turnos, socios y rutinas, con trabajo end-to-end y roles de equipo diferenciados.",
     icons: ["ti-users", "ti-calendar", "ti-barbell"],
     iconColor: "#FBBF24",
+    organization: "waikia",
   },
   {
     tag: "Experiencia profesional",
@@ -339,7 +340,7 @@ function ExperienceItem({ item, index }: { item: (typeof EXPERIENCE)[0]; index: 
   );
 }
 
-function ProjectCard({ tag, tagColor, tagBg, title, desc, icons, iconColor }: (typeof PROJECTS)[0]) {
+function ProjectCard({ tag, tagColor, tagBg, title, desc, icons, iconColor, organization }: (typeof PROJECTS)[0]) {
   return (
     <motion.div variants={fadeUp} className="project-card">
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 12 }}>
@@ -347,6 +348,16 @@ function ProjectCard({ tag, tagColor, tagBg, title, desc, icons, iconColor }: (t
           {tag}
         </span>
         <div style={{ display: "flex", gap: 6 }}>
+          {organization === "waikia" && (
+            <div className="project-waikia-badge" title="Proyecto dentro de WaikIA">
+              <Image
+                src="/waikia_logo.png"
+                alt="WaikIA"
+                width={28}
+                height={28}
+              />
+            </div>
+          )}
           {icons.map((ic) => (
             <div key={ic} className="project-icon-badge" style={{ background: `${iconColor}15` }}>
               <i className={`ti ${ic}`} style={{ color: iconColor, fontSize: 14 }} aria-hidden="true" />
@@ -371,7 +382,7 @@ function WaikIACard() {
     >
       <div className="waikia-orb-caption">
         <h2>WaikIA</h2>
-        <span>Co-Leader / QA</span>
+        <span>Co-Leader</span>
       </div>
 
       <button
@@ -413,7 +424,7 @@ function WaikIACard() {
             >
               <div className="waikia-modal-header">
                 <div>
-                  <span className="waikia-tag">Co-Leader / QA</span>
+                  <span className="waikia-tag">Co-Leader</span>
                   <h2 id="waikia-modal-title" className="waikia-title">
                     WaikIA Organization
                   </h2>
@@ -622,7 +633,7 @@ export default function Home() {
 
               <motion.p variants={fadeUp} custom={4} className="hero-desc">
                 Programadora graduada de la UTN con foco en tecnologia, gestion y calidad.
-                Trabajo cerca de equipos tecnicos para ordenar proyectos digitales, validar
+                Trabajo con equipos tecnicos para ordenar proyectos digitales, validar
                 entregables y convertir ideas en soluciones claras.
               </motion.p>
 
@@ -653,6 +664,11 @@ export default function Home() {
                 <div className="stat-item">
                   <span className="stat-number">PM+</span>
                   <span className="stat-label">Gestion digital</span>
+                </div>
+                <div className="stat-divider" />
+                <div className="stat-item">
+                  <span className="stat-number">WaikIA</span>
+                  <span className="stat-label">Co-Leader</span>
                 </div>
               </motion.div>
             </div>
