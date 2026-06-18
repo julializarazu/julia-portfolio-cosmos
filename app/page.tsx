@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion, useInView } from "framer-motion";
+import Image from "next/image";
 import { useMemo, useRef, useState } from "react";
 import { JuliaChat } from "@/components/JuliaChat";
 
@@ -167,6 +168,24 @@ const PROJECTS = [
     desc: "Mi web personal con un clon conversacional de IA entrenado con mi perfil real. Diseno Cosmos Dark, animaciones con Framer Motion e integracion conversacional desde el chat.",
     icons: ["ti-robot", "ti-sparkles", "ti-brand-vercel"],
     iconColor: "#A78BFA",
+  },
+];
+
+const WAIKIA_SOCIALS = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/waikiahq?igsh=OTg5aXE2ZmY1djNp",
+    icon: "ti-brand-instagram",
+  },
+  {
+    label: "TikTok",
+    href: "https://www.tiktok.com/@waikiahq?_r=1&_t=ZS-97IJttQ5sE1",
+    icon: "ti-brand-tiktok",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/waikia/",
+    icon: "ti-brand-linkedin",
   },
 ];
 
@@ -341,6 +360,136 @@ function ProjectCard({ tag, tagColor, tagBg, title, desc, icons, iconColor }: (t
   );
 }
 
+function WaikIACard() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <motion.div
+      variants={fadeUp}
+      custom={4}
+      className="waikia-orb-wrap"
+    >
+      <div className="waikia-orb-caption">
+        <h2>WaikIA</h2>
+        <span>Co-Leader / QA</span>
+      </div>
+
+      <button
+        type="button"
+        aria-label={isOpen ? "Cerrar enlaces de WaikIA" : "Abrir enlaces de WaikIA"}
+        aria-expanded={isOpen}
+        className="waikia-orb-button transition-all duration-300 hover:scale-[1.02]"
+        onClick={() => setIsOpen((current) => !current)}
+      >
+        <Image
+          src="/waikia_logo.png"
+          alt="Logo circular de WaikIA"
+          width={126}
+          height={126}
+          priority
+          className="waikia-logo"
+        />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="waikia-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsOpen(false)}
+          >
+            <motion.aside
+              className="waikia-modal-panel bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 shadow-xl"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="waikia-modal-title"
+              initial={{ opacity: 0, y: 22, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 16, scale: 0.96 }}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="waikia-modal-header">
+                <div>
+                  <span className="waikia-tag">Co-Leader / QA</span>
+                  <h2 id="waikia-modal-title" className="waikia-title">
+                    WaikIA Organization
+                  </h2>
+                </div>
+                <button
+                  type="button"
+                  aria-label="Cerrar WaikIA"
+                  className="waikia-modal-close"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <i className="ti ti-x" aria-hidden="true" />
+                </button>
+              </div>
+
+              <div className="waikia-desc waikia-copy">
+                <p>
+                  Somos un grupo de amigos de la facu que nos unimos para impulsar este proyecto.
+                  En <strong>WaikIA</strong>, no solo usamos IA; <strong>dominamos la tecnología</strong>{" "}
+                  para que tu equipo deje de perder tiempo en tareas repetitivas.
+                </p>
+
+                <div className="waikia-services">
+                  <p className="waikia-kicker">
+                    ¿Qué hacemos por vos?
+                  </p>
+
+                  <div className="waikia-feature-list">
+                    <div className="waikia-feature waikia-feature-purple">
+                      <p className="waikia-feature-title">
+                        🚀 Automatización de Workflows
+                      </p>
+                      <p className="waikia-feature-desc">
+                        Conectamos tus herramientas para que el laburo se haga solo mientras tomás un mate.
+                      </p>
+                    </div>
+
+                    <div className="waikia-feature waikia-feature-blue">
+                      <p className="waikia-feature-title">
+                        ⚡ Software a medida
+                      </p>
+                      <p className="waikia-feature-desc">
+                        Creamos soluciones adaptadas a tu negocio, listas para crecer y desarrolladas en tiempo récord.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <p className="waikia-final">
+                  Dejá de vivir en el pasado. Es hora de que la tecnología trabaje para vos y no al revés.
+                </p>
+              </div>
+
+              <div className="waikia-socials" aria-label="Redes sociales de WaikIA">
+                {WAIKIA_SOCIALS.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="waikia-social-link"
+                    aria-label={`Abrir ${social.label} de WaikIA`}
+                    title={social.label}
+                  >
+                    <i className={`ti ${social.icon}`} aria-hidden="true" />
+                    <span>{social.label}</span>
+                  </a>
+                ))}
+              </div>
+            </motion.aside>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
+
 function Stars() {
   const stars = useMemo(
     () =>
@@ -402,109 +551,113 @@ export default function Home() {
       <div className="split-layout">
         <div className="content-col">
           <motion.section
-            className="hero-section"
+            className="hero-section hero-grid"
             variants={stagger}
             initial="hidden"
             animate="visible"
           >
-            <motion.div
-              variants={fadeUp}
-              className="hero-badges"
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 12,
-                marginBottom: 24,
-              }}
-            >
-              <span
+            <div className="hero-copy">
+              <motion.div
+                variants={fadeUp}
+                className="hero-badges"
                 style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 8,
-                  borderRadius: 999,
-                  padding: "6px 12px",
-                  border: "1px solid rgba(167,139,250,.2)",
-                  background: "rgba(168,85,247,.1)",
-                  color: "#D8B4FE",
-                  fontSize: 12,
-                  letterSpacing: ".12em",
-                  textTransform: "uppercase",
-                }}
-              >
-                Tecnica en Programacion - UTN
-              </span>
-              <span
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 8,
-                  borderRadius: 999,
-                  padding: "6px 12px",
-                  border: "1px solid rgba(167,139,250,.2)",
-                  background: "rgba(99,102,241,.08)",
-                  color: "#D8B4FE",
-                  fontSize: 12,
-                  letterSpacing: ".12em",
-                  textTransform: "uppercase",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 12,
+                  marginBottom: 24,
                 }}
               >
                 <span
-                  className="eyebrow-dot"
                   style={{
-                    width: 7,
-                    height: 7,
-                    boxShadow: "0 0 16px rgba(167,139,250,.9)",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 8,
+                    borderRadius: 999,
+                    padding: "6px 12px",
+                    border: "1px solid rgba(167,139,250,.2)",
+                    background: "rgba(168,85,247,.1)",
+                    color: "#D8B4FE",
+                    fontSize: 12,
+                    letterSpacing: ".12em",
+                    textTransform: "uppercase",
                   }}
-                />
-                Disponible para nuevos desafios
-              </span>
-            </motion.div>
+                >
+                  Tecnica en Programacion - UTN
+                </span>
+                <span
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 8,
+                    borderRadius: 999,
+                    padding: "6px 12px",
+                    border: "1px solid rgba(167,139,250,.2)",
+                    background: "rgba(99,102,241,.08)",
+                    color: "#D8B4FE",
+                    fontSize: 12,
+                    letterSpacing: ".12em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  <span
+                    className="eyebrow-dot"
+                    style={{
+                      width: 7,
+                      height: 7,
+                      boxShadow: "0 0 16px rgba(167,139,250,.9)",
+                    }}
+                  />
+                  Disponible para nuevos desafios
+                </span>
+              </motion.div>
 
-            <motion.h1 variants={fadeUp} custom={2} className="display">
-              Hola, soy <span className="accent">Julia</span><br />
-              <span className="accent">Lizarazu</span>
-            </motion.h1>
+              <motion.h1 variants={fadeUp} custom={2} className="display">
+                Hola, soy <span className="accent">Julia</span><br />
+                <span className="accent">Lizarazu</span>
+              </motion.h1>
 
-            <motion.p variants={fadeUp} custom={3} className="hero-role">
-              Assistant Manager - QA - Desarrollo - Organizacion
-            </motion.p>
+              <motion.p variants={fadeUp} custom={3} className="hero-role">
+                Assistant Manager - QA - Desarrollo - Organizacion
+              </motion.p>
 
-            <motion.p variants={fadeUp} custom={4} className="hero-desc">
-              Programadora graduada de la UTN con foco en tecnologia, gestion y calidad.
-              Trabajo cerca de equipos tecnicos para ordenar proyectos digitales, validar
-              entregables y convertir ideas en soluciones claras.
-            </motion.p>
+              <motion.p variants={fadeUp} custom={4} className="hero-desc">
+                Programadora graduada de la UTN con foco en tecnologia, gestion y calidad.
+                Trabajo cerca de equipos tecnicos para ordenar proyectos digitales, validar
+                entregables y convertir ideas en soluciones claras.
+              </motion.p>
 
-            <motion.div variants={fadeUp} custom={5} className="hero-ctas">
-              <button
-                type="button"
-                className="btn-primary"
-                onClick={() => setShowContactModal(true)}
-              >
-                Escribirme
-              </button>
-              <a href="#experience" className="btn-secondary">
-                Ver experiencia
-              </a>
-            </motion.div>
+              <motion.div variants={fadeUp} custom={5} className="hero-ctas">
+                <button
+                  type="button"
+                  className="btn-primary"
+                  onClick={() => setShowContactModal(true)}
+                >
+                  Escribirme
+                </button>
+                <a href="#experience" className="btn-secondary">
+                  Ver experiencia
+                </a>
+              </motion.div>
 
-            <motion.div variants={fadeUp} custom={6} className="stats-row">
-              <div className="stat-item">
-                <span className="stat-number">UTN</span>
-                <span className="stat-label">Graduada 2025</span>
-              </div>
-              <div className="stat-divider" />
-              <div className="stat-item">
-                <span className="stat-number">QA</span>
-                <span className="stat-label">Testing funcional</span>
-              </div>
-              <div className="stat-divider" />
-              <div className="stat-item">
-                <span className="stat-number">PM+</span>
-                <span className="stat-label">Gestion digital</span>
-              </div>
-            </motion.div>
+              <motion.div variants={fadeUp} custom={6} className="stats-row">
+                <div className="stat-item">
+                  <span className="stat-number">UTN</span>
+                  <span className="stat-label">Graduada 2025</span>
+                </div>
+                <div className="stat-divider" />
+                <div className="stat-item">
+                  <span className="stat-number">QA</span>
+                  <span className="stat-label">Testing funcional</span>
+                </div>
+                <div className="stat-divider" />
+                <div className="stat-item">
+                  <span className="stat-number">PM+</span>
+                  <span className="stat-label">Gestion digital</span>
+                </div>
+              </motion.div>
+            </div>
+
+            <WaikIACard />
           </motion.section>
 
           <section id="about" className="page-section">
